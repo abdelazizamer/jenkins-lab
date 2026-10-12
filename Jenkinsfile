@@ -28,7 +28,7 @@ pipeline {
         }
 
         failure {
-            echo 'Pipeline failed! Sending email...'
+            ech 'Pipeline failed! Sending email...'
             emailext (
                 subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                 body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
