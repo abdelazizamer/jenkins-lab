@@ -16,7 +16,7 @@
         
         stage('Hello ITI') {
             steps {
-                ech 'Hello ITI'
+                echo 'Hello ITI'
             }
         }
 
