@@ -24,7 +24,7 @@ pipeline {
         }
 
         success {
-            echo 'Pipeline executed successfully!'
+            ech 'Pipeline executed successfully!'
         }
 
         failure {
