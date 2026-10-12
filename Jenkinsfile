@@ -1,32 +1,21 @@
 pipeline {
     agent any
 
-    stags {
+    stages {
         stage('Hello World') {
             steps {
                 echo 'Hello World'
             }
         }
 
-        stage('Run Script') {
+        stage('Fail Purposefully') {
             steps {
-                sh '''
-                    chmod +x hello.sh
-                    ./hello.sh
-                '''
+                sh 'exit 1'
             }
         }
     }
 
     post {
-        always {
-            echo 'Pipeline finished (success, failure, or aborted).'
-        }
-
-        success {
-            echo 'Pipeline executed successfully!'
-        }
-
         failure {
             echo 'Pipeline failed! Sending email...'
             emailext (
@@ -35,10 +24,6 @@ pipeline {
                     <p>Check console output at <a href="${env.BUILD_URL}">${env.BUILD_URL}</a> to view the logs.</p>""",
                 to: 'abdelazizamer03@gmail.com'
             )
-        }
-
-        aborted {
-            echo 'Pipeline was aborted!'
         }
     }
 }
