@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -24,17 +25,11 @@ pipeline {
         }
 
         success {
-            ech 'Pipeline executed successfully!'
+            echo 'Pipeline executed successfully!'
         }
 
         failure {
-            echo 'Pipeline failed! Sending email...'
-            emailext (
-                subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-                body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-                    <p>Check console output at <a href="${env.BUILD_URL}">${env.BUILD_URL}</a> to view the logs.</p>""",
-                to: 'abdelazizamer03@gmail.com'
-            )
+            echo 'Pipeline failed!'
         }
 
         aborted {
